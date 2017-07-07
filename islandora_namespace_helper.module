@@ -28,7 +28,7 @@ function islandora_namespace_helper_form_alter(&$form, &$form_state, $form_id){
     }
   }
   $form['pid']['#access'] = FALSE;
-  $form['pid']['#element_validate'][] = 'collection_dammit'; 
+  $form['pid']['#element_validate'][] = 'collection_namespace_helper_validate'; 
   $form['institution-prefix'] = array(
       '#type' => $input_choice,
       '#title' => t('Collection PID Prefix (Unique to Institution)'),
@@ -40,9 +40,9 @@ function islandora_namespace_helper_form_alter(&$form, &$form_state, $form_id){
       '#description' => t("Enter a Collection alias, as part of this collection's PID"),
       '#title' => t('Collection Alias (Unique to collection)'),  
     );
-$form['#validate'][] = 'collection_dammit';
-$form_state['validate_handlers'][] = 'collection_dammit';
+$form['#validate'][] = 'collection_namespace_helper_validate';
+$form_state['validate_handlers'][] = 'collection_namespace_helper_validate';
 }
-function collection_dammit($form, &$form_state){
+function collection_namespace_helper_validate($form, &$form_state){
      $form_state['values']['pid'] = $form_state['values']['institution-prefix'] . '-' . $form_state['values']['collection-alias'] . ':collection';
 }
