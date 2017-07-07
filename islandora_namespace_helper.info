@@ -1,0 +1,6 @@
+name = Islandora Namespace Helper
+description = draws on user's allowed namespaces, assists in creating new collections with appropriate institution/sub-intitution relationships
+core = 7.x
+package = Islandora Utilities
+dependencies[] = islandora
+dependencies[] = islandora_namespaced_object_managment
