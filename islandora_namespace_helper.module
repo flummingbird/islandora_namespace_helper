@@ -6,6 +6,7 @@ function islandora_namespace_helper_form_alter(&$form, &$form_state, $form_id){
         return;
     }
   $user = user_uid_optional_load();
+  $form['policy']['namespace']['#access'] = FALSE;
   $user_namespace = $user->field_namespace;  
   //if user has no namespace restrictons
     if(empty($user_namespace)){
@@ -42,9 +43,12 @@ function islandora_namespace_helper_form_alter(&$form, &$form_state, $form_id){
       '#description' => t("Enter a Collection alias, as part of this collection's PID"),
       '#title' => t('Collection Alias (Unique to collection)'),
     );
+  
 $form['#validate'][] = 'collection_namespace_helper_validate';
+
 $form_state['validate_handlers'][] = 'collection_namespace_helper_validate';
 }
 function collection_namespace_helper_validate($form, &$form_state){
      $form_state['values']['pid'] = $form_state['values']['institution-prefix'] . '-' . $form_state['values']['collection-alias'] . ':collection';
+     $form_state['values']['namespace'] = substr($form_state['values']['pid'], 0, strpos($form_state['values']['pid'],':'));
 }
