@@ -28,7 +28,7 @@ function islandora_namespace_helper_form_alter(&$form, &$form_state, $form_id){
       }
     }
   }
-  
+
   $form['next']['#weight'] = 1;
   $form['pid']['#access'] = FALSE;
   $form['pid']['#element_validate'][] = 'collection_namespace_helper_validate'; 

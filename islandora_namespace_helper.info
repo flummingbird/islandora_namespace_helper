@@ -3,4 +3,4 @@ description = draws on user's allowed namespaces, assists in creating new collec
 core = 7.x
 package = Islandora Utilities
 dependencies[] = islandora
-dependencies[] = islandora_namespaced_object_management
+dependencies[] = islandora_namespace_homepage
